@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: wall_fountain_mid_blue_anim_f0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 320fbd3af5fd7cf4e90171554ed4954c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c79c688a40ebc5944af4f5437d28b6a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private ResourceController _playerResourceController;
 
     [SerializeField] private int currentWaveIndex = 0;
+    private int currentWave = 0;
 
     private EnemyManager enemyManager;
 
@@ -18,20 +19,22 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        
+            Instance = this;
+            
+            player = FindObjectOfType<PlayerController>(true);
+            player.Init(this);
 
-        player = FindObjectOfType<PlayerController>();
-        player.Init(this);
+            uiManager = FindObjectOfType<UIManager>(true);
 
-        uiManager = FindObjectOfType<UIManager>();
+            enemyManager = GetComponentInChildren<EnemyManager>(true);
+            enemyManager.Init(this);
 
-        enemyManager = GetComponentInChildren<EnemyManager>();
-        enemyManager.Init(this);
-
-        // player의 resourceController가 알아서 동작하다가 Hp 변화가 생길때마다 uimanager의 changePlayerHp를 자동으로 호출해주는 코드 (자주 쓰이니 알고 있자)
-        _playerResourceController = player.GetComponent<ResourceController>();
-        _playerResourceController.RemoveHealthChangeEvent(uiManager.ChangePlayerHP);
-        _playerResourceController.AddHealthChangeEvent(uiManager.ChangePlayerHP);
+            _playerResourceController = player.GetComponent<ResourceController>();
+            _playerResourceController.RemoveHealthChangeEvent(uiManager.ChangePlayerHP);
+            _playerResourceController.AddHealthChangeEvent(uiManager.ChangePlayerHP);
+        
+      
     }
 
     private void Start()
@@ -60,8 +63,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void EndOfWave()
-    {
-        StartNextWave();
+    { 
+        StartNextWave(); 
     }
 
     public void GameOver()
@@ -69,4 +72,13 @@ public class GameManager : MonoBehaviour
         enemyManager.StopWave();
         uiManager.SetGameOver();
     }
+
+    public void OnWaveClear()
+    {
+        currentWave++;
+
+        if (currentWave > GlobalManager.Instance.BestWave)
+            GlobalManager.Instance.UpdateBestWave(currentWave);
+    }
+
 }

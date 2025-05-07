@@ -12,7 +12,6 @@ public class GameOverUI : BaseUI
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
-
         restartButton.onClick.AddListener(OnClickRestartButton);
         exitButton.onClick.AddListener(OnClickExitButton);
     }
@@ -24,7 +23,7 @@ public class GameOverUI : BaseUI
 
     public void OnClickExitButton()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainScene");
     }
 
     protected override UIState GetUIState()

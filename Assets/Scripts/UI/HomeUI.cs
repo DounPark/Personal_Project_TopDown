@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HomeUI : BaseUI
@@ -11,7 +12,6 @@ public class HomeUI : BaseUI
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
-
         startButton.onClick.AddListener(OnClickStartButton);
         exitButton.onClick.AddListener(OnClickExitButton);
     }
@@ -23,7 +23,7 @@ public class HomeUI : BaseUI
 
     public void OnClickExitButton()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainScene");
     }
 
     protected override UIState GetUIState()

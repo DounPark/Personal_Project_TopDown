@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
 public enum UIState
 {
@@ -15,7 +14,6 @@ public class UIManager : MonoBehaviour
     HomeUI homeUI;
     GameUI gameUI;
     GameOverUI gameOverUI;
-
     private UIState currentState;
 
     private void Awake()
@@ -47,7 +45,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangePlayerHP(float currentHP, float maxHP)
     {
-        gameUI.UpdateHPSlider(currentHP /  maxHP);
+        gameUI.UpdateHPSlider(currentHP/ maxHP);
     }
 
     public void ChangeState(UIState state)
